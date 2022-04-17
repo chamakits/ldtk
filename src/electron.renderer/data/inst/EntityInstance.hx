@@ -10,6 +10,26 @@ class EntityInstance {
 	public var x : Int;
 	public var y : Int;
 	public var rotateRadians : Float = 123.4;
+	public var _origDx : Null<Float> = null;
+	public var _origDy : Null<Float> = null;
+	public var origDx(get, set) : Null<Float>;
+		inline function get_origDx() return _origDx;
+		inline function set_origDx(origDxIn) {
+			if ( _origDx == null ) {
+				_origDx = origDxIn;
+			}
+			return _origDx;
+		}
+	public var origDy(get, set) : Null<Float>;
+		inline function get_origDy() return _origDy;
+		inline function set_origDy(origDyIn) {
+			if ( _origDy == null ) {
+				_origDy = origDyIn;
+			}
+			return _origDy;
+		}
+	public var debugDx : Float = 0;
+	public var debugDy : Float = 0;
 	public var centerX(get,never) : Int;
 	public var centerY(get,never) : Int;
 	public var worldX(get,never) : Int;
@@ -69,6 +89,8 @@ class EntityInstance {
 			height: height,
 			defUid: defUid,
 			rotateRadians: rotateRadians,
+			debugDx: debugDx,
+			debugDy: debugDy,
 			px: [x,y],
 			fieldInstances: {
 				var all = [];

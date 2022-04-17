@@ -236,14 +236,24 @@ class EntityInstanceEditor extends dn.Process {
 		if( UNIT_GRID )
 			i.setUnit(ei._li.def.gridSize);
 
-		// Rotation try1
-		// var jRotations = jPropsForm.find(".rotation");
-		// var jRotationRadian = jRotations.find(".rotation");
-		// Sys.println('jRotationRadian: ${jRotationRadian.text}')
-		// jUnit.click( _->{
-		// 	UNIT_GRID = !UNIT_GRID;
-		// 	updateInstancePropsForm();
-		// });
+		// Rotation try2
+		var i = Input.linkToHtmlInput(ei.rotateRadians, jCoords.find("[name=rotationRadian]"));
+		i.setBounds(-10, 10);
+		i.linkEvent( EntityInstanceChanged(ei) );
+		i.onChange = ()->onEntityFieldChanged();
+
+		// Debug block:
+		var jDebug = jPropsForm.find(".debug");
+		var i = Input.linkToHtmlInput(ei.debugDx, jDebug.find("[name=dx]"));
+		// i.setBounds(0, editor.curLevel.pxWid);
+		i.linkEvent( EntityInstanceChanged(ei) );
+		i.onChange = ()->onEntityFieldChanged();
+		var i = Input.linkToHtmlInput(ei.debugDy, jDebug.find("[name=dy]"));
+		// i.setBounds(0, editor.curLevel.pxWid);
+		i.linkEvent( EntityInstanceChanged(ei) );
+		i.onChange = ()->onEntityFieldChanged();
+
+
 
 		// Rotation try2
 		var i = Input.linkToHtmlInput(ei.rotateRadians, jCoords.find("[name=rotationRadian]"));

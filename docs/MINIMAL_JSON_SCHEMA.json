@@ -276,7 +276,7 @@
 				"height",
 				"iid",
 				"px",
-				"rotateDeg",
+				"rotateRadians",
 				"width"
 			],
 			"additionalProperties": false,
@@ -323,12 +323,6 @@
 						"array"
 					]
 				},
-				"rotateDeg": {
-					"description": "Rotation in degrees.",
-					"type": [
-						"number"
-					]
-				},
 				"__smartColor": {
 					"description": "The entity \"smart\" color, guessed from either Entity definition, or one its field instances.",
 					"type": [
@@ -364,6 +358,12 @@
 					},
 					"type": [
 						"array"
+					]
+				},
+				"rotateRadians": {
+					"description": "Rotation in degrees.",
+					"type": [
+						"number"
 					]
 				},
 				"height": {

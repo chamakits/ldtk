@@ -102,10 +102,16 @@ class EntityRender extends dn.Process {
 
 		function _rotateIfEntityExists(obj: h2d.Drawable, tile: h2d.Tile, ei : data.inst.EntityInstance, mode:ldtk.Json.EntityTileRenderMode) {
 			App.LOG.warning('mode: ${mode}, obj: ${obj}, size: ${obj.getSize()}, ei is null: ${ei == null}');
+			App.LOG.warning('tile: dx: ${tile.dx}, dy: ${tile.dy}');
 			if ( ei != null ) {
 				App.LOG.warning('Rotating');
 				obj.rotation = ei.rotateRadians;
 				obj.adjustColor(null);
+				ei.origDx = tile.dx;
+				ei.origDy = tile.dy;
+				App.LOG.warning('orig dx values: dx: ${ei.origDx}, dy: ${ei.origDy}');
+				tile.dx = ei.debugDx;
+				tile.dy = ei.debugDy;
 				// tile.center();
 				// TODO: Try to find a way to rotate without changing the tile.dx,dy
 

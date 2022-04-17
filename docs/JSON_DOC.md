@@ -147,7 +147,7 @@ Value | Type | Description
 `height`<br/> ![Generic badge](https://img.shields.io/badge/Added_0.8.0-gray.svg)  | Int | Entity height in pixels. For non-resizable entities, it will be the same as Entity definition.
 `iid`<br/> ![Generic badge](https://img.shields.io/badge/Added_1.0.0-gray.svg)  | String | Unique instance identifier
 `px`<br/> ![Generic badge](https://img.shields.io/badge/Changed_0.4.0-gray.svg)  | Array&nbsp;of&nbsp;Int | Pixel coordinates (`[x,y]` format) in current level coordinate space. Don't forget optional layer offsets, if they exist!
-`rotateDeg`<br/> ![Generic badge](https://img.shields.io/badge/Changed_1.0.1-chamdev-gray.svg)  | Float | Rotation in degrees.
+`rotateRadians`<br/> ![Generic badge](https://img.shields.io/badge/Changed_1.0.1-chamdev-gray.svg)  | Float | Rotation in degrees.
 `width`<br/> ![Generic badge](https://img.shields.io/badge/Added_0.8.0-gray.svg)  | Int | Entity width in pixels. For non-resizable entities, it will be the same as Entity definition.
 
 <a id="ldtk-FieldInstanceJson" name="ldtk-FieldInstanceJson"></a>
