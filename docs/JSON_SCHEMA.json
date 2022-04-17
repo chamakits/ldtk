@@ -439,6 +439,7 @@
 				"height",
 				"iid",
 				"px",
+				"rotateDeg",
 				"width"
 			],
 			"additionalProperties": false,
@@ -483,6 +484,12 @@
 					},
 					"type": [
 						"array"
+					]
+				},
+				"rotateDeg": {
+					"description": "Rotation in degrees.",
+					"type": [
+						"number"
 					]
 				},
 				"__smartColor": {
