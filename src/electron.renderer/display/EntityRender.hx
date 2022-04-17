@@ -107,11 +107,13 @@ class EntityRender extends dn.Process {
 				App.LOG.warning('Rotating');
 				obj.rotation = ei.rotateRadians;
 				obj.adjustColor(null);
+				tile.setCenterRatio(0.5, 0.5);
 				ei.origDx = tile.dx;
 				ei.origDy = tile.dy;
 				App.LOG.warning('orig dx values: dx: ${ei.origDx}, dy: ${ei.origDy}');
 				tile.dx = ei.debugDx;
 				tile.dy = ei.debugDy;
+				// tile.setCenterRatio(0.5, 0.5);
 				// tile.center();
 				// TODO: Try to find a way to rotate without changing the tile.dx,dy
 
