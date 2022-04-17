@@ -236,6 +236,23 @@ class EntityInstanceEditor extends dn.Process {
 		if( UNIT_GRID )
 			i.setUnit(ei._li.def.gridSize);
 
+		// Rotation try1
+		// var jRotations = jPropsForm.find(".rotation");
+		// var jRotationRadian = jRotations.find(".rotation");
+		// Sys.println('jRotationRadian: ${jRotationRadian.text}')
+		// jUnit.click( _->{
+		// 	UNIT_GRID = !UNIT_GRID;
+		// 	updateInstancePropsForm();
+		// });
+
+		// Rotation try2
+		var i = Input.linkToHtmlInput(ei.rotateRadians, jCoords.find("[name=rotationRadian]"));
+		i.setBounds(0, editor.curLevel.pxWid);
+		i.linkEvent( EntityInstanceChanged(ei) );
+		i.onChange = ()->onEntityFieldChanged();
+		// if( UNIT_GRID )
+		// 	i.setUnit(ei._li.def.gridSize);
+		
 		// Width
 		var i = new form.input.IntInput(
 			jCoords.find("[name=w]"),

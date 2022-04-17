@@ -212,17 +212,17 @@ class FieldInstanceRender {
 				// Label
 				var tf = createText(labelFlow);
 				tf.textColor = baseColor;
-				tf.text = fd.identifier;
+				tf.text = 'lbl: ${fd.identifier}';
 
 				// Value
 				var tf = createText(valueFlow);
 				tf.textColor = baseColor;
-				tf.text = '${fi.getArrayLength()} value(s)';
+				tf.text = 'val:${fi.getArrayLength()} value(s)';
 
 			case ArrayCountNoLabel:
 				var tf = createText(valueFlow);
 				tf.textColor = baseColor;
-				tf.text = '${fi.getArrayLength()} value(s)';
+				tf.text = 'arr:${fi.getArrayLength()} value(s)';
 
 			case RadiusPx:
 				switch ctx {
@@ -409,10 +409,10 @@ class FieldInstanceRender {
 					}
 					var v = fi.getForDisplay(idx);
 					if( fi.def.type==F_Bool && fi.def.editorDisplayMode==ValueOnly )
-						tf.text = '${fi.getBool(idx)?"+":"-"}${fi.def.identifier}';
+						tf.text = 'rend:${fi.getBool(idx)?"+":"-"}${fi.def.identifier}';
 					else {
 						if( v==null )
-							tf.text = "--null--";
+							tf.text = "null:--null--";
 						else if( fi.def.editorCutLongValues ) {
 							var lines = v.substr(0,70).split("\n");
 							var n = M.imin(2, lines.length);

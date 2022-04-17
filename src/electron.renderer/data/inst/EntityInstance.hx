@@ -9,7 +9,7 @@ class EntityInstance {
 	public var defUid(default,null) : Int;
 	public var x : Int;
 	public var y : Int;
-	public var rotateDeg : Float = 45;
+	public var rotateRadians : Float = 123.4;
 	public var centerX(get,never) : Int;
 	public var centerY(get,never) : Int;
 	public var worldX(get,never) : Int;
@@ -68,7 +68,7 @@ class EntityInstance {
 			width: width,
 			height: height,
 			defUid: defUid,
-			rotateDeg: rotateDeg,
+			rotateRadians: rotateRadians,
 			px: [x,y],
 			fieldInstances: {
 				var all = [];

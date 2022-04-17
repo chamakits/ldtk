@@ -5,6 +5,7 @@ typedef CoreRender = {
 	var g : h2d.Graphics;
 }
 
+// TODO of-studying: This is the class that renders entity instances
 class EntityRender extends dn.Process {
 	var ei : data.inst.EntityInstance;
 	var ed(get,never) : data.def.EntityDef; inline function get_ed() return ei.def;
@@ -94,6 +95,10 @@ class EntityRender extends dn.Process {
 		var g = new h2d.Graphics(wrapper);
 		g.x = Std.int( -w*ed.pivotX + (ld!=null ? ld.pxOffsetX : 0) );
 		g.y = Std.int( -h*ed.pivotY + (ld!=null ? ld.pxOffsetY : 0) );
+		// This seems wrong
+		// if(ei!=null) {
+		// 	g.rotation = ei.rotateRadians;
+		// }
 
 		// Render a tile
 		function _renderTile(rect:ldtk.Json.TilesetRect, mode:ldtk.Json.EntityTileRenderMode) {
@@ -125,6 +130,9 @@ class EntityRender extends dn.Process {
 
 						bmp.scaleX = w / bmp.tile.width;
 						bmp.scaleY = h / bmp.tile.height;
+						if( ei!=null ) {
+							bmp.rotation = ei.rotateRadians;
+						}
 
 					case FitInside:
 						var bmp = new h2d.Bitmap(t, wrapper);
@@ -133,12 +141,18 @@ class EntityRender extends dn.Process {
 
 						var s = M.fmin(w / bmp.tile.width, h / bmp.tile.height);
 						bmp.setScale(s);
+						if( ei!=null ) {
+							bmp.rotation = ei.rotateRadians;
+						}
 
 					case Repeat:
 						var tt = new dn.heaps.TiledTexture(t, w,h, wrapper);
 						tt.alpha = alpha;
 						tt.x = -w*ed.pivotX;
 						tt.y = -h*ed.pivotY;
+						if( ei!=null ) {
+							tt.rotation = ei.rotateRadians;
+						}
 
 					case Cover:
 						var bmp = new h2d.Bitmap(wrapper);
@@ -154,6 +168,9 @@ class EntityRender extends dn.Process {
 						);
 						bmp.tile.setCenterRatio(ed.pivotX, ed.pivotY);
 						bmp.setScale(s);
+						if( ei!=null ) {
+							bmp.rotation = ei.rotateRadians;
+						}
 
 					case FullSizeCropped:
 						var bmp = new h2d.Bitmap(wrapper);
@@ -166,11 +183,17 @@ class EntityRender extends dn.Process {
 						);
 						bmp.tile.setCenterRatio(ed.pivotX, ed.pivotY);
 						bmp.alpha = alpha;
+						if( ei!=null ) {
+							bmp.rotation = ei.rotateRadians;
+						}
 
 					case FullSizeUncropped:
 						var bmp = new h2d.Bitmap(t, wrapper);
 						bmp.tile.setCenterRatio(ed.pivotX, ed.pivotY);
 						bmp.alpha = alpha;
+						if( ei!=null ) {
+							bmp.rotation = ei.rotateRadians;
+						}
 
 					case NineSlice:
 						var sg = new h2d.ScaleGrid(
@@ -185,6 +208,9 @@ class EntityRender extends dn.Process {
 						sg.height = h;
 						sg.x = -w*ed.pivotX;
 						sg.y = -h*ed.pivotY;
+						if( ei!=null ) {
+							sg.rotation = ei.rotateRadians;
+						}
 
 				}
 			}
@@ -283,6 +309,7 @@ class EntityRender extends dn.Process {
 			var col = refEi.getSmartColor(true);
 			var refX = ( refEi.getRefAttachX(fi.def) + refEi._li.level.worldX ) - ei.worldX;
 			var refY = ( refEi.getRefAttachY(fi.def) + refEi._li.level.worldY ) - ei.worldY;
+			// TODO of-studying: Finding usage of position.
 			var thisX = ei.getRefAttachX(fi.def) - ei.x;
 			var thisY = ei.getRefAttachY(fi.def) - ei.y;
 			FieldInstanceRender.renderRefLink(
@@ -318,8 +345,10 @@ class EntityRender extends dn.Process {
 		final maxFieldsWid = ei.width*1.5 * settings.v.editorUiScale;
 		final maxFieldsHei = ei.height*1.5 * settings.v.editorUiScale;
 
+		// TODO of-studying: Finding usage of position.
 		root.x = ei.x;
 		root.y = ei.y;
+		// root.rotation = ei.rotateRadians;
 
 		final fullVis = ei._li==Editor.ME.curLayerInstance;
 
