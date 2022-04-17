@@ -100,6 +100,38 @@ class EntityRender extends dn.Process {
 		// 	g.rotation = ei.rotateRadians;
 		// }
 
+		function _rotateIfEntityExists(obj: h2d.Drawable, tile: h2d.Tile, ei : data.inst.EntityInstance, mode:ldtk.Json.EntityTileRenderMode) {
+			App.LOG.warning('mode: ${mode}, obj: ${obj}, size: ${obj.getSize()}, ei is null: ${ei == null}');
+			if ( ei != null ) {
+				App.LOG.warning('Rotating');
+				obj.rotation = ei.rotateRadians;
+				obj.adjustColor(null);
+				// tile.center();
+				// TODO: Try to find a way to rotate without changing the tile.dx,dy
+
+				/*
+				Tried this below but it didn't work for multiple reasons I think.
+				- I'm undoing the setting of values right here, so it doesn't make it to the update loop.
+				- I commented out the undoing of values, and then it's way off center. It's because dx and dy get modified elsewhere mabye.
+				- I think the example in the docs of using -50 is a bad hard coding?
+				*/
+				// See here: https://heaps.io/documentation/h2d-introduction.html#Bitmap
+				// var origDx = tile.dx;
+				// var origDy = tile.dy;
+				// tile.dx = -50;
+    			// tile.dy = -50;
+				// obj.rotation = ei.rotateRadians;
+				// tile.dx = origDx;
+    			// tile.dy = origDy;
+
+			}
+
+			// if ( obj.tile != null ) {
+			// 	App.LOG.warning('mode: ${mode} Has tile');
+			// }
+			App.LOG.printAll();
+		}
+
 		// Render a tile
 		function _renderTile(rect:ldtk.Json.TilesetRect, mode:ldtk.Json.EntityTileRenderMode) {
 			if( rect==null || Editor.ME.project.defs.getTilesetDef(rect.tilesetUid)==null ) {
@@ -130,9 +162,11 @@ class EntityRender extends dn.Process {
 
 						bmp.scaleX = w / bmp.tile.width;
 						bmp.scaleY = h / bmp.tile.height;
-						if( ei!=null ) {
-							bmp.rotation = ei.rotateRadians;
-						}
+
+						// if( ei!=null ) {
+						// 	bmp.rotation = ei.rotateRadians;
+						// }
+						_rotateIfEntityExists(bmp, t, ei, mode);
 
 					case FitInside:
 						var bmp = new h2d.Bitmap(t, wrapper);
@@ -141,18 +175,20 @@ class EntityRender extends dn.Process {
 
 						var s = M.fmin(w / bmp.tile.width, h / bmp.tile.height);
 						bmp.setScale(s);
-						if( ei!=null ) {
-							bmp.rotation = ei.rotateRadians;
-						}
+						// if( ei!=null ) {
+						// 	bmp.rotation = ei.rotateRadians;
+						// }
+						_rotateIfEntityExists(bmp, t, ei, mode);
 
 					case Repeat:
 						var tt = new dn.heaps.TiledTexture(t, w,h, wrapper);
 						tt.alpha = alpha;
 						tt.x = -w*ed.pivotX;
 						tt.y = -h*ed.pivotY;
-						if( ei!=null ) {
-							tt.rotation = ei.rotateRadians;
-						}
+						// if( ei!=null ) {
+						// 	tt.rotation = ei.rotateRadians;
+						// }
+						_rotateIfEntityExists(tt, t, ei, mode);
 
 					case Cover:
 						var bmp = new h2d.Bitmap(wrapper);
@@ -168,9 +204,10 @@ class EntityRender extends dn.Process {
 						);
 						bmp.tile.setCenterRatio(ed.pivotX, ed.pivotY);
 						bmp.setScale(s);
-						if( ei!=null ) {
-							bmp.rotation = ei.rotateRadians;
-						}
+						// if( ei!=null ) {
+						// 	bmp.rotation = ei.rotateRadians;
+						// }
+						_rotateIfEntityExists(bmp, t, ei, mode);
 
 					case FullSizeCropped:
 						var bmp = new h2d.Bitmap(wrapper);
@@ -183,17 +220,19 @@ class EntityRender extends dn.Process {
 						);
 						bmp.tile.setCenterRatio(ed.pivotX, ed.pivotY);
 						bmp.alpha = alpha;
-						if( ei!=null ) {
-							bmp.rotation = ei.rotateRadians;
-						}
+						// if( ei!=null ) {
+						// 	bmp.rotation = ei.rotateRadians;
+						// }
+						_rotateIfEntityExists(bmp, t, ei, mode);
 
 					case FullSizeUncropped:
 						var bmp = new h2d.Bitmap(t, wrapper);
 						bmp.tile.setCenterRatio(ed.pivotX, ed.pivotY);
 						bmp.alpha = alpha;
-						if( ei!=null ) {
-							bmp.rotation = ei.rotateRadians;
-						}
+						// if( ei!=null ) {
+						// 	bmp.rotation = ei.rotateRadians;
+						// }
+						_rotateIfEntityExists(bmp, t, ei, mode);
 
 					case NineSlice:
 						var sg = new h2d.ScaleGrid(
@@ -208,9 +247,10 @@ class EntityRender extends dn.Process {
 						sg.height = h;
 						sg.x = -w*ed.pivotX;
 						sg.y = -h*ed.pivotY;
-						if( ei!=null ) {
-							sg.rotation = ei.rotateRadians;
-						}
+						// if( ei!=null ) {
+						// 	sg.rotation = ei.rotateRadians;
+						// }
+						_rotateIfEntityExists(sg, t, ei, mode);
 
 				}
 			}
