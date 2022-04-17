@@ -398,7 +398,6 @@ const typeMap = {
         { json: "height", js: "height", typ: 0 },
         { json: "iid", js: "iid", typ: "" },
         { json: "px", js: "px", typ: a(0) },
-        { json: "rotateDeg", js: "rotateDeg", typ: a(45.7) },
         { json: "width", js: "width", typ: 0 },
     ], false),
     "FieldInstance": o([
