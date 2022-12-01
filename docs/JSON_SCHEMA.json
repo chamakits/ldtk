@@ -434,6 +434,8 @@
 				"__pivot",
 				"__smartColor",
 				"__tags",
+				"debugDx",
+				"debugDy",
 				"defUid",
 				"fieldInstances",
 				"height",
@@ -444,6 +446,12 @@
 			],
 			"additionalProperties": false,
 			"properties": {
+				"debugDy": {
+					"description": "debugDy.",
+					"type": [
+						"number"
+					]
+				},
 				"iid": {
 					"description": "Unique instance identifier",
 					"type": [
@@ -512,6 +520,12 @@
 					},
 					"type": [
 						"array"
+					]
+				},
+				"debugDx": {
+					"description": "Debug dx.",
+					"type": [
+						"number"
 					]
 				},
 				"fieldInstances": {
